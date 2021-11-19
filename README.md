@@ -44,4 +44,57 @@ Feito isso, é importante então compilar o projeto!
 
 ![image](https://user-images.githubusercontent.com/51242342/142526633-18d4523a-2a7c-4e89-8009-95366b168261.png)
 
+## Processo TDD
+Conforme mencionado anteriormente,  a sigla TDD descreve uma técnica de desenvolvimento denominada "Test Driven Development" ou "Desenvolvimento Voltado a Testes".  Adotado em paradigmas como a programação extrema (XP), o TDD se baseia na montagem primeiro dos testes a quais determinados códigos ou funcionalidades devem atender, antes da escrita do programa de fato.   
+
+Seguindo esta lógica, o TDD funciona através de um ciclo básico de três etapas. 
+
+ - **Fase Vermelha:** Inicialmente, elabora-se o teste unitário o qual será falho, afinal, não existirá ainda um "código" para passar por ele.
+ - **Fase Verde:** Em sequência, é desenvolvido o programa o qual deverá atender ao teste criado, de modo a torná-lo bem sucedido. 
+ - **Refatoração**: Por fim, é feita a refatoração do código desenvolvido, de modo que ele possa ser melhorado conforme os pontos apontados no processo de teste, além de atender a padrões de implementação.
+
+## Exemplo TDD: Fórmula de Bhaskara
+Agora, apresentarei um exemplo simples e rápido da implementação de um TDD usando JUnit. 
+
+### Fase Vermelha
+1. Inicialmente, cria-se uma estrutura de pastas/pacotes padrão conforme o projeto. Para o meu caso, criei uma classe "Bhaskara" dentro do pacote "com.izabela", na qual implementarei o método a ser testado. 
+2. O método em questão será o "calculaBhaskara", instanciado de maneira estática (para ser chamado sem necessidade de uma instância da classe) e possuindo como valor de retorno "-1". Este valor inicial foi estabelecido pois ainda não será feito nenhum código no interior do método, afinal, o TDD se baseia primeiro no desenvolvimento de um teste a ser atendido.   
+![image](https://user-images.githubusercontent.com/51242342/142553279-3e16ae6c-da43-44f4-8a59-ac02c6b39b40.png)
+
+3. Criaremos agora a classe de teste referente à original Bhaskara. Para tanto, podemos clicar com o botão direito do mouse no nome da classe e então em "Go To > Test", conforme ilustrado abaixo. 
+![image](https://user-images.githubusercontent.com/51242342/142553547-5997fa20-9e2e-4715-8c87-fc13d7378514.png) 
+4. Inicialmente, não existirá classe de teste, logo, deveremos efetuar sua criação conforme a janela pop-up. 
+![image](https://user-images.githubusercontent.com/51242342/142553678-f5699f1d-8a1f-467f-a834-7fc0ce93f694.png)
+5. Com a classe criada, deveremos implementar um ou mais casos de teste aos quais deverão ser atendidos. Conforme se sabe pela matemática, a fórmula de bháskara recebe três valores A, B e C os quais correspondem a incógnitas de uma equação de segundo grau e retorna as raízes da equação. Sabe-se que: A deve ser maior que zero (para que a equação seja do segundo grau) e que delta (b^2 - 4 . A . C) não deverá ser negativo para que as raízes sejam reais. Como queremos uma função com um único valor de retorno, será necessário que o valor de delta seja igual a zero, para que haja apenas um valor real. Ademais, precisaremos verificar se A é ou não diferente de zero.  Projetaremos um teste para realizar estas aferições. 
+
+### Fase Vermelha (Parte 2)
+O teste mencionado é apresentado abaixo.  
+![image](https://user-images.githubusercontent.com/51242342/142555943-7849a8e4-cd5b-4bde-bc6e-00a22c43bb80.png)
+Tem-se um conjunto de incógnitas as quais atendem ambas as demandas explicitadas no item anterior. Usa-se da assertiva "assertEquals" para verificar se o valor retornado pelo método calculaBhaskara corresponde ao valor esperado como solução. A notação @Test é usada antes do método para indicar que o mesmo corresponde a um método de teste. 
+
+Agora, executaremos a classe de teste mencionada através do comando "Run Bhaskara Test", que pode ser encontrado ao clicar no nome da classe que se deseja executar com o botão direito do mouse. 
+![image](https://user-images.githubusercontent.com/51242342/142556140-d05c2e1e-671e-4871-a017-0f915fcc45d9.png)
+
+Como resultado da execução, teremos que o teste falhou, exatamente como esperado, afinal, ainda não foi desenvolvido um código adequado para o cálculo de bháskara na classe Bhaskara. 
+![image](https://user-images.githubusercontent.com/51242342/142556309-23b2a57d-25fe-411a-916d-bc8c489130e0.png)
+
+
+### Fase Verde
+Agora que já temos um caso de teste a ser atendido, usaremos as condições de validação do mesmo para elaborar a solução. Temos de garantir que:
+
+ - A seja positivo
+ - Delta seja igual a zero
+
+Isso é feito através do código apresentado abaixo. Ao executá-lo, temos que o teste foi atendido, o que conclui a fase verde :)
+![image](https://user-images.githubusercontent.com/51242342/142557091-c3932596-f6d1-4729-a846-23406291da83.png)
+
+### Refatoração
+Agora que já temos um código que atende às nossas condições de teste, podemos partir para a fase final do nosso TDD: a refatoração. Nela aperfeiçoaremos o programa da classe Bhaskara para que ele se torne mais efetivo. No nosso caso, podemos fazer a fusão dos ifs apresentados, colocando o cálculo do delta no início do método, conforme apresentado abaixo. 
+![image](https://user-images.githubusercontent.com/51242342/142557404-78275bc1-8fb1-49f1-9fb6-5440b1c4c244.png)
+
+Agora é necessário apenas executar o teste novamente, verificando se ele irá passar! Conforme apresentado abaixo, vemos que sim, ele foi aprovado :)
+![image](https://user-images.githubusercontent.com/51242342/142557609-07f486e4-a1c5-4320-a939-7255dc20835d.png)
+
+## Conclusão
+Encerramos aqui nosso pequeno exemplo de TDD com JUnit! Espero que você tenha gostado desse tutorial!
 
