@@ -41,3 +41,6 @@ Para finalizar essa fase inicial de configuração do projeto, é necessário ad
 ![image](https://user-images.githubusercontent.com/51242342/142520957-0ea4ebfb-0fec-439e-b2ac-c34b1d700ca7.png)
 
 Feito isso, é importante então compilar o projeto!
+
+![image](https://user-images.githubusercontent.com/51242342/142526117-7978eef8-b4ee-4328-ac2d-94121700c5a7.png)
+
